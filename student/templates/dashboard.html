@@ -2,28 +2,150 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Students</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Students Directory</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Apply custom font and background */
+        body {
+            background-color: #f8f9fa; /* Light background for contrast */
+            font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+            padding-top: 2rem; /* Add space at the top */
+            padding-bottom: 3rem; /* Add space at the bottom */
+        }
+
+        /* Style the main title */
+        .page-title {
+            color: #343a40; /* Dark gray title */
+            margin-bottom: 2.5rem; /* Space below title */
+            font-weight: 600; /* Bolder title */
+        }
+
+        /* Custom card styling */
+        .student-card {
+            background-color: #ffffff; /* White card background */
+            border: none; /* Remove default border */
+            border-radius: 0.75rem; /* More rounded corners */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth hover transitions */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack content vertically */
+            height: 100%; /* Ensure cards in a row are the same height */
+        }
+
+        /* Hover effect for cards */
+        .student-card:hover {
+            transform: translateY(-6px); /* Lift card slightly */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* Increase shadow */
+        }
+
+        /* Card body styling */
+        .card-body {
+            padding: 1.75rem; /* More padding inside the card */
+            flex-grow: 1; /* Allow body to grow and push footer down */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Card title styling */
+        .card-title {
+            color: #0d6efd; /* Bootstrap primary blue */
+            font-weight: 600;
+            margin-bottom: 1.2rem; /* Space below the name */
+            font-size: 1.2rem;
+        }
+
+        /* Styling for text details (Age, Email, Address) */
+        .card-text {
+            color: #6c757d; /* Muted text color */
+            margin-bottom: 0.75rem; /* Spacing between details */
+            font-size: 0.9rem; /* Slightly smaller text */
+            display: flex; /* Align icon and text */
+            align-items: center; /* Vertically center icon */
+        }
+
+        /* Icon styling */
+        .card-text i.fa-fw { /* Use fixed-width icons for alignment */
+            margin-right: 0.7rem; /* Space between icon and text */
+            color: #adb5bd; /* Lighter icon color */
+            width: 1.2em; /* Ensure consistent icon width */
+            text-align: center;
+        }
+
+        /* Card footer for buttons */
+        .card-footer {
+            background-color: transparent; /* No background */
+            border-top: none; /* No border */
+            padding: 0 1.75rem 1.75rem; /* Match body padding */
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        /* General button styling */
+        .btn {
+            border-radius: 0.3rem; /* Slightly rounded buttons */
+            padding: 0.4rem 0.9rem; /* Button padding */
+            font-size: 0.85rem; /* Button text size */
+            margin-right: 0.5rem; /* Space between buttons */
+            transition: all 0.2s ease; /* Smooth button transitions */
+        }
+        .btn:last-child {
+            margin-right: 0; /* Remove margin from last button */
+        }
+
+        /* Specific button styles (using outline for modern look) */
+        .btn-edit {
+            /* Uses btn-outline-primary */
+        }
+        .btn-delete {
+           /* Uses btn-outline-danger */
+        }
+
+        /* Style for the 'no students' message */
+        .no-students-alert {
+            margin-top: 2rem;
+        }
+
+    </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="row">
+    <div class="container mt-4 mb-5">
+
+        <h1 class="text-center page-title">Student Directory</h1>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             {% for student in students %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
+            <div class="col"> <div class="card student-card"> <div class="card-body">
                         <h5 class="card-title">{{ student.name }}</h5>
-                        <p class="card-text">Age: {{ student.age }}</p>
-                        <p class="card-text">Email: {{ student.email }}</p>
-                        <p class="card-text">Address: {{ student.address }}</p>
-                        <a href="{% url 'edit_student' student.id %}" class="btn btn-primary">edit</a>
-                        <a href="{% url 'delete_student' student.id %}" class="btn btn-primary">delete</a>
+                        <p class="card-text"><i class="fas fa-birthday-cake fa-fw"></i><strong>Age:</strong> {{ student.age }}</p>
+                        <p class="card-text"><i class="fas fa-envelope fa-fw"></i><strong>Email:</strong> {{ student.email }}</p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt fa-fw"></i><strong>Address:</strong> {{ student.address }}</p>
+                    </div>
+                    <div class="card-footer text-end"> <a href="{% url 'edit_student' student.id %}" class="btn btn-outline-primary btn-sm btn-edit">
+                            <i class="fas fa-edit me-1"></i> Edit
+                        </a>
+                        <a href="{% url 'delete_student' student.id %}" class="btn btn-outline-danger btn-sm btn-delete">
+                             <i class="fas fa-trash-alt me-1"></i> Delete
+                        </a>
                     </div>
                 </div>
             </div>
+            {% empty %}
+             <div class="col-12">
+                 <div class="alert alert-info text-center no-students-alert" role="alert">
+                     <i class="fas fa-info-circle me-2"></i>No students found in the directory.
+                 </div>
+             </div>
             {% endfor %}
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -81,6 +81,14 @@
             <div class="error" id="fileError"></div>
             <button type="submit">Add</button>
         </form>
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+
     </div>
 
     <script>
