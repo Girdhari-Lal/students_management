@@ -23,23 +23,13 @@ A web-based application built with Django for managing student records efficient
 
 ---
 
-## 🖼️ Screenshots (Optional)
-
-*(Consider adding screenshots here to showcase the application)*
-
-* *Screenshot of the File Upload Page*
-* *Screenshot of the Student Dashboard*
-* *Screenshot of the Edit Student Modal*
-
----
-
 ## 🛠️ Technology Stack
 
 * **Backend:** Django (Python Web Framework)
 * **Data Processing:** Pandas (for reading `.xlsx`/`.csv` files)
 * **Frontend:** HTML5, CSS3
 * **UI Framework:** Bootstrap 5
-* **Database:** SQLite (default, configurable in Django settings)
+* **Database:** Postgresql
 * **Environment Management:** Conda
 
 ---
@@ -101,7 +91,6 @@ Follow these steps to get the project running locally:
 2.  **View Dashboard:** Go to the dashboard page (e.g., `/dashboard/` or the root `/`) to see the list of students.
 3.  **Edit Student:** Click the "Edit" button next to a student record. A modal will appear allowing you to modify the details. Save the changes.
 4.  **Delete Student:** Click the "Delete" button next to a student record. Confirm the action to remove the student permanently.
-5.  **Admin Interface:** Access `http://127.0.0.1:8000/admin/` and log in with the superuser credentials to manage data via the Django admin panel.
 
 ---
 
