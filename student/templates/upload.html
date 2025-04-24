@@ -2,15 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Upload Student Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form p {
+            margin-bottom: 1rem;
+        }
+
+        input[type="file"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 0.6rem;
+            margin-top: 0.2rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.8rem;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-    <h2>Upload Student Data</h2>
-    <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {{columns}}
-    <button type="submit">Add</button>
-    </form>
+    <div class="container">
+        <h2>Upload Student Data</h2>
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateFile()">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="error" id="fileError"></div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+    <script>
+        function validateFile() {
+            const fileInput = document.querySelector('input[type="file"]');
+            const errorDiv = document.getElementById('fileError');
+            errorDiv.textContent = '';
+
+            if (fileInput && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const allowedExtensions = /\.(csv|xls|xlsx)$/i;
+
+                if (!allowedExtensions.test(file.name)) {
+                    errorDiv.textContent = 'Only .csv, .xls, or .xlsx files are allowed.';
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
