@@ -66,19 +66,14 @@ Follow these steps to get the project running locally:
     python manage.py migrate
     ```
 
-5.  **Create a Superuser (Admin):**
-    * This allows access to the Django admin interface (optional but recommended).
-        ```bash
-        python manage.py createsuperuser
-        ```
-    * Follow the prompts to create an admin username and password.
 
-6.  **Run the Development Server:**
+
+5. **Run the Development Server:**
     ```bash
     python manage.py runserver
     ```
 
-7.  **Access the Application:**
+6.  **Access the Application:**
     * Open your web browser and navigate to: `http://127.0.0.1:8000/upload/`
     * The file upload page and dashboard should be accessible via the defined URL patterns in your `urls.py`.
 
