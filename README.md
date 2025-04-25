@@ -79,7 +79,7 @@ Follow these steps to get the project running locally:
     ```
 
 7.  **Access the Application:**
-    * Open your web browser and navigate to: `http://127.0.0.1:8000/`
+    * Open your web browser and navigate to: `http://127.0.0.1:8000/upload/`
     * The file upload page and dashboard should be accessible via the defined URL patterns in your `urls.py`.
 
 ---
