@@ -44,10 +44,9 @@ Follow these steps to get the project running locally:
 
 2.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/your-username/student-management.git](https://github.com/your-username/student-management.git)
+    git clone (https://github.com/Girdhari-Lal/students_management.git)
     cd student-management
     ```
-    *(Replace `your-username` with the actual GitHub username/organization)*
 
 3.  **Create and Activate Conda Environment:**
     * Create the environment using the provided file:
